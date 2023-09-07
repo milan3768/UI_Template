@@ -1,0 +1,74 @@
+{
+  "ui_objects": [
+    {
+      "name": "template",
+      "type": "image",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "width": 800,
+        "height": 600
+      },
+      "children": [
+        {
+          "name": "AppIcon",
+          "type": "image",
+          "position": {
+            "x": -150,
+            "y": 100
+          },
+          "size": {
+            "width": 200,
+            "height": 200
+          }
+        },
+        {
+          "name": "AppAdName",
+          "type": "text",
+          "position": {
+            "x": 100,
+            "y": 100
+          },
+          "size": {
+            "width": 300,
+            "height": 200
+          },
+          "text": "Test Ad - Flood It!",
+          "textColor": "black",
+          "textSize" : 60
+        },
+        {
+          "name": "AppAdBodyTxt",
+          "type": "text",
+          "position": {
+            "x": 0,
+            "y": -75
+          },
+          "size": {
+            "width": 600,
+            "height": 100
+          },
+          "text": "Install Flood-It game for now! Free popular casual game.",
+          "textColor": "black",
+          "textSize" : 30
+        },
+        {
+          "name": "button1",
+          "type": "button",
+          "position": {
+            "x": 0,
+            "y": -200
+          },
+          "size": {
+            "width": 300,
+            "height": 100
+          },
+          "text": "INSTALL",
+          "textColor": "white"
+        }
+      ]
+    }
+  ]
+}

@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class JSONReader : MonoBehaviour
 {
     private string jsonFilePath = "UITemplate.json";
-    public RootObject rootObj = new RootObject();
     public Transform templateHolder;
 
     public void ShowUITemplate()
@@ -17,10 +16,9 @@ public class JSONReader : MonoBehaviour
         {
             string jsonData = File.ReadAllText(jsonFilePath);
 
-            // Assuming your JSON data is stored in a string variable called jsonData
-            rootObj = JsonConvert.DeserializeObject<RootObject>(jsonData);
+            RootObject rootObj = JsonConvert.DeserializeObject<RootObject>(jsonData);
 
-            // Now you can access the parsed data using the rootObject instance
+            // Now access the parsed data using the rootObject instance
             foreach (var uiObject in rootObj.ui_objects)
             {
                 GameObject gameObj = new GameObject();
@@ -29,17 +27,20 @@ public class JSONReader : MonoBehaviour
 
                 switch (uiObject.type)
                 {
+                    //Image component
                     case "image":
                         gameObj.AddComponent<Image>();
                         gameObj.GetComponent<Image>().color = Color.yellow;
                         break;
 
+                    //Button component
                     case "button":
                         gameObj.AddComponent<Button>();
                         gameObj.AddComponent<Image>();
                         gameObj.GetComponent<Image>().sprite = UnityEditor.AssetDatabase.GetBuiltinExtraResource<Sprite>("UI/Skin/UISprite.psd");
                         break;
 
+                    //Text component
                     case "text":
                         gameObj.AddComponent<Text>();
                         Text textComp = gameObj.GetComponent<Text>();
@@ -63,16 +64,19 @@ public class JSONReader : MonoBehaviour
                         childObj.transform.parent = gameObj.transform;
                         switch (child.type)
                         {
+                            //Image child component
                             case "image":
                                 childObj.AddComponent<Image>();
                                 break;
-
+                            
+                            //Button child component
                             case "button":
                                 childObj.AddComponent<Button>();
                                 childObj.AddComponent<Image>();
                                 childObj.GetComponent<Image>().sprite = UnityEditor.AssetDatabase.GetBuiltinExtraResource<Sprite>("UI/Skin/UISprite.psd");
                                 break;
 
+                            //Text child component
                             case "text":
                                 childObj.AddComponent<Text>();
                                 Text textComp = childObj.GetComponent<Text>();
@@ -94,6 +98,11 @@ public class JSONReader : MonoBehaviour
             Debug.LogError("JSON file does not exist.");
         }
     }
+}
+
+public class RootObject
+{
+    public List<UIObject> ui_objects { get; set; }
 }
 
 public class UIObject
@@ -118,10 +127,5 @@ public class Size
 {
     public int width { get; set; }
     public int height { get; set; }
-}
-
-public class RootObject
-{
-    public List<UIObject> ui_objects { get; set; }
 }
 
